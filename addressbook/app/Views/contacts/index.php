@@ -8,202 +8,214 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: rgb(1, 5, 29);
-            color: #e0e0e0;
+            background-color: #e8eaf6;
+            color: #333;
         }
-        .navbar-dark .navbar-brand {
-            color: #ffffff;
+        .navbar {
+            background-color: #3f51b5;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+        .navbar-brand {
+            color: #ffffff !important;
         }
         .card {
-            background-color: #1e1e1e;
-            color: #e0e0e0;
+            background-color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
         }
         .card-header {
-            background-color: #0d6efd;
+            background-color: #c5cae9;
+            border-bottom: 1px solid #e9ecef;
+            border-radius: 8px 8px 0 0 !important;
         }
-        .form-control, .form-select {
-            background-color:rgb(255, 255, 255);
-            color: #ffffff;
-            border: 1px solid #444;
+        .btn-primary {
+            background-color: #3f51b5;
+            border: none;
         }
-        .form-control::placeholder {
-            color: #aaaaaa;
-        }
-        .form-select option {
-            background-color: #2c2c2c;
+        .btn-primary:hover {
+            background-color: #303f9f;
         }
         .table {
-            color: brown;
-            width: 100%; 
-            border-collapse: collapse;
-             max-width: 100%;
+            color: #333;
         }
-        .table thead {
-            background-color: #333;
-            color: #ffffff;
+        .table thead th {
+            background-color: #e8eaf6;
+            border-bottom: 2px solid #c5cae9;
         }
-        .contact-row:hover {
-            background-color: #2a2a2a;
+        .table-hover tbody tr:hover {
+            background-color: #f5f6ff;
         }
-        .btn-outline-primary {
-            border-color: #0d6efd;
-            color: #0d6efd;
-        }
-        .btn-outline-primary:hover {
-            background-color: #0d6efd;
+        .tag {
+            display: inline-block;
+            padding: 0.25em 0.6em;
+            font-size: 0.75rem;
+            font-weight: 500;
+            line-height: 1;
             color: #fff;
+            background-color: #3f51b5;
+            border-radius: 0.25rem;
+            margin: 0.1rem;
         }
-        .btn-outline-danger:hover {
-            background-color: #dc3545;
-            color: #fff;
+        .filter-section {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
         }
-        .btn-outline-danger {
-            border-color: #dc3545;
-            color: #dc3545;
+        .form-control:focus, .form-select:focus {
+            border-color: #3f51b5;
+            box-shadow: 0 0 0 0.2rem rgba(63, 81, 181, 0.25);
         }
-        .btn-outline-info {
-            border-color: #17a2b8;
-            color: #17a2b8;
-        }
-        .btn-outline-info:hover {
-            background-color: #17a2b8;
-            color: #fff;
-        }
-        
     </style>
 </head>
 <body>
-    
-
-    <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="mb-0">Address Book</h1>
-            <div class="d-flex">
-                <a href="/contacts/create" class="btn btn-primary me-2">
-                    <i class="fas fa-plus me-2"></i>Add New Contact
-                </a>
-                <button class="btn btn-outline-info me-2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-filter me-2"></i>Filter by Location
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" data-location="New York">New York</a></li>
-                    <li><a class="dropdown-item" href="#" data-location="Delhi">Delhi</a></li>
-                    <li><a class="dropdown-item" href="#" data-location="London">London</a></li>
-                    <li><a class="dropdown-item" href="#" data-location="Berlin">Berlin</a></li>
-                    <li><a class="dropdown-item" href="#" data-location="Tokyo">Tokyo</a></li>
-                </ul>
-                <button class="btn btn-outline-primary" id="searchBtn">
-                    <i class="fas fa-search me-2"></i>Search
-                </button>
-            </div>
+    <nav class="navbar navbar-expand-lg mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">Address Book</a>
         </div>
+    </nav>
 
-        <div class="card shadow-sm">
-            <div class="card-header py-3">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Search contacts...">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="h3 text-dark">Contacts</h1>
+                    <div class="d-flex gap-2">
+                        <a href="/contacts/create" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Add New Contact
+                        </a>
+                        <a href="/contacts/export-pdf" class="btn btn-secondary">
+                            <i class="fas fa-file-pdf me-2"></i>Export PDF
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Location</th>
-                            <th>Job Position</th>
-                            <th>Address</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contactsTable">
-                        <?php foreach ($contacts as $row): ?>
-                        <tr class="contact-row" data-location="<?= esc($row['location']) ?>">
-                            <td class="align-middle"><?= esc($row['name']) ?></td>
-                            <td class="align-middle"><?= esc($row['email']) ?></td>
-                            <td class="align-middle"><?= esc($row['phone']) ?></td>
-                            <td class="align-middle"><?= esc($row['location']) ?></td>
-                            <td class="align-middle"><?= esc($row['job_position']) ?></td>
-                            <td class="align-middle">
-                                <span class="address-tooltip" 
-                                      data-bs-toggle="tooltip" 
-                                      data-bs-placement="top" 
-                                      title="<?= esc($row['address']) ?>">
-                                    <?= substr(esc($row['address']), 0, 20) ?>...
-                                </span>
-                            </td>
-                            <td class="align-middle">
-                                <div class="btn-group" role="group">
-                                    <a href="/contacts/edit/<?= $row['id'] ?>" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="/contacts/delete/<?= $row['id'] ?>" class="btn btn-sm btn-outline-danger" 
-                                       onclick="return confirm('Are you sure you want to delete this contact?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="filter-section">
+                    <h5 class="mb-3">Filters</h5>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Location</label>
+                        <select class="form-select" id="locationFilter">
+                            <option value="">All Locations</option>
+                            <option value="New York">New York</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="London">London</option>
+                            <option value="Berlin">Berlin</option>
+                            <option value="Tokyo">Tokyo</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <div class="form-check">
+                            <input class="form-check-input tag-filter" type="checkbox" value="Family" id="tag_Family">
+                            <label class="form-check-label" for="tag_Family">Family</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input tag-filter" type="checkbox" value="Friends" id="tag_Friends">
+                            <label class="form-check-label" for="tag_Friends">Friends</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input tag-filter" type="checkbox" value="Work" id="tag_Work">
+                            <label class="form-check-label" for="tag_Work">Work</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search contacts...">
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Location</th>
+                                    <th>Category</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contactsTable">
+                                <?php foreach ($contacts as $row): ?>
+                                <tr class="contact-row" data-location="<?= esc($row['location']) ?>" data-tags="<?= esc($row['tags'] ?? '') ?>">
+                                    <td><?= esc($row['name']) ?></td>
+                                    <td><?= esc($row['email']) ?></td>
+                                    <td><?= esc($row['phone']) ?></td>
+                                    <td><?= esc($row['location']) ?></td>
+                                    <td>
+                                        <?php if (!empty($row['tags'])): ?>
+                                            <span class="tag"><?= esc($row['tags']) ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="/contacts/edit/<?= $row['id'] ?>" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="/contacts/delete/<?= $row['id'] ?>" class="btn btn-sm btn-outline-danger" 
+                                               onclick="return confirm('Are you sure you want to delete this contact?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Initialize tooltips
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const locationFilter = document.getElementById('locationFilter');
+            const tagFilters = document.querySelectorAll('.tag-filter');
+            
+            function filterContacts() {
+                const searchText = searchInput.value.toLowerCase();
+                const selectedLocation = locationFilter.value;
+                const selectedTags = Array.from(tagFilters)
+                    .filter(cb => cb.checked)
+                    .map(cb => cb.value);
 
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('keyup', filterContacts)
-        document.getElementById('searchBtn').addEventListener('click', filterContacts)
-
-        function filterContacts() {
-            const searchText = document.getElementById('searchInput').value.toLowerCase()
-            const rows = document.getElementById('contactsTable').getElementsByTagName('tr')
-
-            for (let row of rows) {
-                const name = row.cells[0].textContent.toLowerCase()
-                const email = row.cells[1].textContent.toLowerCase()
-                const phone = row.cells[2].textContent.toLowerCase()
-                const location = row.cells[3].textContent
-                const jobPosition = row.cells[4].textContent.toLowerCase()
+                const rows = document.querySelectorAll('.contact-row');
                 
-                const matchesSearch = name.includes(searchText) || 
-                                    email.includes(searchText) || 
-                                    phone.includes(searchText) ||
-                                    jobPosition.includes(searchText)
+                rows.forEach(row => {
+                    const location = row.getAttribute('data-location');
+                    const tags = row.getAttribute('data-tags');
+                    
+                    const matchesSearch = Array.from(row.children)
+                        .some(cell => cell.textContent.toLowerCase().includes(searchText));
+                    
+                    const matchesLocation = !selectedLocation || location === selectedLocation;
+                    
+                    const matchesTags = selectedTags.length === 0 || 
+                        selectedTags.some(tag => tags === tag);
 
-                row.style.display = matchesSearch ? '' : 'none'
+                    row.style.display = (matchesSearch && matchesLocation && matchesTags) ? '' : 'none';
+                });
             }
-        }
 
-        // Filter by location
-        const locationFilterButtons = document.querySelectorAll('.dropdown-item')
-        locationFilterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const selectedLocation = this.getAttribute('data-location')
-                const rows = document.getElementById('contactsTable').getElementsByTagName('tr')
-
-                for (let row of rows) {
-                    const location = row.getAttribute('data-location')
-
-                    if (selectedLocation && location !== selectedLocation) {
-                        row.style.display = 'none'
-                    } else {
-                        row.style.display = ''
-                    }
-                }
-            })
-        })
+            searchInput.addEventListener('input', filterContacts);
+            locationFilter.addEventListener('change', filterContacts);
+            tagFilters.forEach(cb => cb.addEventListener('change', filterContacts));
+        });
     </script>
 </body>
 </html>

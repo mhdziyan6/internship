@@ -6,8 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-// Set contacts as the main landing page
-$routes->get('/', 'ContactController::index');
+// Set homepage as the main landing page
+$routes->get('/', function() {
+    return view('contacts/homepage');
+});
 
 // Address Book routes
 $routes->get('contacts', 'ContactController::index');

@@ -19,7 +19,8 @@ class ContactModel extends Model
         'phone',
         'address',
         'location',
-        'job_position'
+        'job_position',
+        'tags'
     ];
 
     // Timestamps
@@ -28,7 +29,7 @@ class ContactModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    // Validation (optional - define if you want automatic validation)
+    // Validation
     protected $validationRules = [
         'name'         => 'required|min_length[2]',
         'email'        => 'required|valid_email',
@@ -47,7 +48,7 @@ class ContactModel extends Model
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    // Callbacks (if needed later)
+    // Callbacks
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];
     protected $afterInsert    = [];

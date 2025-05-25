@@ -6,8 +6,32 @@
     <title>Add New Contact</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(1, 5, 29);
+            color: #e0e0e0;
+        }
+        .card {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        .card-header {
+            background-color: #0d6efd;
+        }
+        .form-control, .form-select {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            border: 1px solid #444;
+        }
+        .form-control::placeholder {
+            color: #aaaaaa;
+        }
+        .form-select option {
+            background-color: #2c2c2c;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body class="bg-dark">
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -56,7 +80,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label for="location" class="form-label">Location</label>
                                     <select name="location" id="location" class="form-select <?= (isset($validation) && $validation->hasError('location')) ? 'is-invalid' : '' ?>" required>
                                         <option value="" disabled <?= !old('location') ? 'selected' : '' ?>>Select a location</option>
@@ -71,11 +95,24 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label for="job_position" class="form-label">Job Position</label>
                                     <input type="text" name="job_position" id="job_position" class="form-control <?= (isset($validation) && $validation->hasError('job_position')) ? 'is-invalid' : '' ?>" value="<?= old('job_position') ?>" required minlength="2" maxlength="100" placeholder="Software Engineer">
                                     <?php if (isset($validation) && $validation->hasError('job_position')): ?>
                                         <div class="invalid-feedback"><?= $validation->getError('job_position') ?></div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <label for="tag" class="form-label">Tag</label>
+                                    <select name="tag" id="tag" class="form-select <?= (isset($validation) && $validation->hasError('tag')) ? 'is-invalid' : '' ?>" required>
+                                        <option value="" disabled <?= !old('tag') ? 'selected' : '' ?>>Select a tag</option>
+                                        <option value="Family" <?= old('tag') == 'Family' ? 'selected' : '' ?>>Family</option>
+                                        <option value="Work" <?= old('tag') == 'Work' ? 'selected' : '' ?>>Work</option>
+                                        <option value="Friends" <?= old('tag') == 'Friends' ? 'selected' : '' ?>>Friends</option>
+                                    </select>
+                                    <?php if (isset($validation) && $validation->hasError('tag')): ?>
+                                        <div class="invalid-feedback"><?= $validation->getError('tag') ?></div>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -97,7 +134,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    // Client-side validation
     (function () {
         'use strict'
         var forms = document.querySelectorAll('.needs-validation')
