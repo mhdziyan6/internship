@@ -10,9 +10,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'ContactController::index');
 
 // Address Book routes
-$routes->get('create', 'ContactController::create');
-$routes->post('store', 'ContactController::store');
-$routes->get('edit/(:num)', 'ContactController::edit/$1');
-$routes->post('update/(:num)', 'ContactController::update/$1');
-$routes->get('delete/(:num)', 'ContactController::delete/$1');
-$routes->get('export-pdf', 'ContactController::exportPDF');
+$routes->get('contacts', 'ContactController::index');
+$routes->get('contacts/create', 'ContactController::create');
+$routes->post('contacts/store', 'ContactController::store');
+$routes->get('contacts/edit/(:num)', 'ContactController::edit/$1');
+$routes->post('contacts/update/(:num)', 'ContactController::update/$1');
+$routes->get('contacts/delete/(:num)', 'ContactController::delete/$1');
+$routes->get('contacts/export-pdf', 'ContactController::exportPDF');

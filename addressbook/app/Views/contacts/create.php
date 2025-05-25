@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="d-flex justify-content-between pt-3">
-                                <a href="/" class="btn btn-outline-secondary">
+                                <a href="/contacts" class="btn btn-outline-secondary">
                                     <i class="fas fa-arrow-left me-2"></i>Back
                                 </a>
                                 <button type="submit" class="btn btn-success">
