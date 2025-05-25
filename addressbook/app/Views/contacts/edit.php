@@ -8,50 +8,78 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #e8eaf6;
-            color: #333;
+            background-color: #001f2d;
+            color: #e0e0e0;
         }
         .navbar {
-            background-color: #3f51b5;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+            background-color: #003344;
+            box-shadow: 0 2px 4px rgba(0,0,0,.2);
         }
         .navbar-brand {
             color: #ffffff !important;
+            font-weight: 600;
         }
         .card {
-            background-color: #ffffff;
+            background-color: #002733;
             border: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,.2);
             border-radius: 8px;
         }
         .card-header {
-            background-color: #c5cae9;
-            border-bottom: 1px solid #e9ecef;
+            background-color: #003344;
+            border-bottom: 1px solid #004455;
             border-radius: 8px 8px 0 0 !important;
         }
+        .form-control, .form-select {
+            background-color: #001f2d;
+            color: #ffffff;
+            border: 1px solid #004455;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #001f2d;
+            border-color: #008080;
+            box-shadow: 0 0 0 0.2rem rgba(0, 128, 128, 0.25);
+            color: #ffffff;
+        }
         .btn-primary {
-            background-color: #3f51b5;
+            background-color: #008080;
             border: none;
         }
         .btn-primary:hover {
-            background-color: #303f9f;
+            background-color: #006666;
         }
-        .form-control:focus {
-            border-color: #3f51b5;
-            box-shadow: 0 0 0 0.2rem rgba(63, 81, 181, 0.25);
+        .btn-outline-secondary {
+            color: #008080;
+            border-color: #008080;
         }
-        .tag-select {
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ced4da;
-            width: 100%;
+        .btn-outline-secondary:hover {
+            background-color: #008080;
+            color: #ffffff;
+        }
+        .home-btn {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card-title, label {
+    color: white !important;
+        }
+
+        .home-btn:hover {
+            color: #008080;
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg mb-4">
         <div class="container">
-            <a class="navbar-brand" href="/">Address Book</a>
+            <a href="/" class="home-btn">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a class="navbar-brand ms-4" href="/contacts">Address Book</a>
         </div>
     </nav>
 
@@ -120,11 +148,11 @@
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-                                    <label for="tags" class="form-label">Category</label>
-                                    <select name="tags" id="tags" class="form-select">
-                                        <option value="Family" <?= (old('tags', $contact['tags'] ?? '') == 'Family') ? 'selected' : '' ?>>Family</option>
-                                        <option value="Friends" <?= (old('tags', $contact['tags'] ?? '') == 'Friends') ? 'selected' : '' ?>>Friends</option>
-                                        <option value="Work" <?= (old('tags', $contact['tags'] ?? '') == 'Work') ? 'selected' : '' ?>>Work</option>
+                                    <label for="tag" class="form-label">Category</label>
+                                    <select name="tag" id="tag" class="form-select">
+                                        <option value="Family" <?= (old('tag', $contact['tag'] ?? '') == 'Family') ? 'selected' : '' ?>>Family</option>
+                                        <option value="Friends" <?= (old('tag', $contact['tag'] ?? '') == 'Friends') ? 'selected' : '' ?>>Friends</option>
+                                        <option value="Work" <?= (old('tag', $contact['tag'] ?? '') == 'Work') ? 'selected' : '' ?>>Work</option>
                                     </select>
                                 </div>
                             </div>

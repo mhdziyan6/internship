@@ -20,7 +20,7 @@ class ContactModel extends Model
         'address',
         'location',
         'job_position',
-        'tags'
+        'tag'
     ];
 
     // Timestamps

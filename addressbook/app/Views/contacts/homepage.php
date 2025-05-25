@@ -11,7 +11,7 @@
             height: 100%;
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: rgb(1, 5, 29);
+            background-color: #003344;
         }
 
         .hero-section {
@@ -26,7 +26,7 @@
 
         .hero-content {
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #003344; 
             padding: 3rem;
             border-radius: 15px;
             backdrop-filter: blur(10px);
@@ -38,7 +38,7 @@
             font-size: 4rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
-            color: #0d6efd;
+            color: #20c997;
         }
 
         .hero-subtitle {
@@ -61,12 +61,12 @@
 
         .feature-item i {
             font-size: 2.5rem;
-            color: #0d6efd;
+            color: #20c997;
             margin-bottom: 1rem;
         }
 
         .cta-button {
-            background-color: #0d6efd;
+            background-color: #20c997;
             color: white;
             padding: 1rem 2.5rem;
             border-radius: 50px;
@@ -77,9 +77,9 @@
         }
 
         .cta-button:hover {
-            background-color: #0b5ed7;
+            background-color: #17a689;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+            box-shadow: 0 5px 15px rgba(32, 200, 151, 0.3);
         }
 
         @media (max-width: 768px) {

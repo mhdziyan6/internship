@@ -8,44 +8,54 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #e8eaf6;
-            color: #333;
+            background-color: #001f2d;
+            color: #e0e0e0;
         }
         .navbar {
-            background-color: #3f51b5;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+            background-color: #003344;
+            box-shadow: 0 2px 4px rgba(0,0,0,.2);
         }
         .navbar-brand {
             color: #ffffff !important;
+            font-weight: 600;
         }
         .card {
-            background-color: #ffffff;
+            background-color: #002733;
             border: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,.2);
             border-radius: 8px;
             margin-bottom: 1rem;
         }
         .card-header {
-            background-color: #c5cae9;
-            border-bottom: 1px solid #e9ecef;
+            background-color: #003344;
+            border-bottom: 1px solid #004455;
             border-radius: 8px 8px 0 0 !important;
         }
         .btn-primary {
-            background-color: #3f51b5;
+            background-color: #008080;
             border: none;
         }
+        #searchInput {
+    color: white !important;
+                    }
+
+        #searchInput::placeholder {
+         color: #ffffff !important; 
+                        }
+
         .btn-primary:hover {
-            background-color: #303f9f;
+            background-color: #006666;
         }
         .table {
-            color: #333;
+            color: #e0e0e0;
         }
         .table thead th {
-            background-color: #e8eaf6;
-            border-bottom: 2px solid #c5cae9;
+            background-color: #003344;
+            border-bottom: 2px solid #004455;
+            color: #ffffff;
         }
         .table-hover tbody tr:hover {
-            background-color: #f5f6ff;
+            background-color: #002f3f;
         }
         .tag {
             display: inline-block;
@@ -54,27 +64,56 @@
             font-weight: 500;
             line-height: 1;
             color: #fff;
-            background-color: #3f51b5;
+            background-color: #008080;
             border-radius: 0.25rem;
             margin: 0.1rem;
         }
         .filter-section {
-            background-color: #ffffff;
+            background-color: #002733;
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+        .form-control, .form-select {
+            background-color: #001f2d;
+            color: #ffffff;
+            border: 1px solid #004455;
         }
         .form-control:focus, .form-select:focus {
-            border-color: #3f51b5;
-            box-shadow: 0 0 0 0.2rem rgba(63, 81, 181, 0.25);
+            background-color: #001f2d;
+            border-color: #008080;
+            box-shadow: 0 0 0 0.2rem rgba(0, 128, 128, 0.25);
+            color: #ffffff;
+        }
+        .btn-outline-secondary {
+            color: #008080;
+            border-color: #008080;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #008080;
+            color: #ffffff;
+        }
+        .home-btn {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .home-btn:hover {
+            color: #008080;
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg mb-4">
         <div class="container">
-            <a class="navbar-brand" href="/">Address Book</a>
+            <a href="/" class="home-btn">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a class="navbar-brand ms-4" href="/contacts">Address Book</a>
         </div>
     </nav>
 
@@ -82,13 +121,10 @@
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1 class="h3 text-dark">Contacts</h1>
-                    <div class="d-flex gap-2">
+                    <h1 class="h3">Contacts</h1>
+                    <div>
                         <a href="/contacts/create" class="btn btn-primary">
                             <i class="fas fa-plus me-2"></i>Add New Contact
-                        </a>
-                        <a href="/contacts/export-pdf" class="btn btn-secondary">
-                            <i class="fas fa-file-pdf me-2"></i>Export PDF
                         </a>
                     </div>
                 </div>
@@ -142,21 +178,25 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Location</th>
+                                    <th>Job Position</th>
                                     <th>Category</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="contactsTable">
                                 <?php foreach ($contacts as $row): ?>
-                                <tr class="contact-row" data-location="<?= esc($row['location']) ?>" data-tags="<?= esc($row['tags'] ?? '') ?>">
+                                <tr class="contact-row" data-location="<?= esc($row['location']) ?>" data-tags="<?= esc($row['tag'] ?? '') ?>">
                                     <td><?= esc($row['name']) ?></td>
                                     <td><?= esc($row['email']) ?></td>
                                     <td><?= esc($row['phone']) ?></td>
+                                    <td><?= esc($row['address']) ?></td>
                                     <td><?= esc($row['location']) ?></td>
+                                    <td><?= esc($row['job_position']) ?></td>
                                     <td>
-                                        <?php if (!empty($row['tags'])): ?>
-                                            <span class="tag"><?= esc($row['tags']) ?></span>
+                                        <?php if (!empty($row['tag'])): ?>
+                                            <span class="tag"><?= esc($row['tag']) ?></span>
                                         <?php endif; ?>
                                     </td>
                                     <td>

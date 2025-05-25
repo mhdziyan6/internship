@@ -37,8 +37,9 @@ class CreateContacts extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ],
-            'tags' => [
-                'type' => 'TEXT',
+            'tag' => [
+                'type' => 'VARCHAR',
+                'constraint' => '50',
                 'null' => true
             ],
             'created_at' => [

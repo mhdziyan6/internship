@@ -8,35 +8,97 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: rgb(1, 5, 29);
+            background-color: #001f2d;
             color: #e0e0e0;
+        }
+        .card-title {
+    color: white !important; /* This makes the font color white */
+            }
+            h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+                }
+                label {
+    color: white !important;
+                    }
+        .navbar {
+            background-color: #003344;
+            box-shadow: 0 2px 4px rgba(0,0,0,.2);
+        }
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 600;
         }
         .card {
-            background-color: #1e1e1e;
-            color: #e0e0e0;
+            background-color: #002733;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,.2);
+            border-radius: 8px;
         }
         .card-header {
-            background-color: #0d6efd;
+            background-color: #003344;
+            border-bottom: 1px solid #004455;
+            border-radius: 8px 8px 0 0 !important;
         }
         .form-control, .form-select {
-            background-color: #2c2c2c;
+            background-color: #001f2d;
             color: #ffffff;
-            border: 1px solid #444;
+            border: 1px solid #004455;
         }
         .form-control::placeholder {
             color: #aaaaaa;
         }
+        .form-control:focus, .form-select:focus {
+            background-color: #001f2d;
+            border-color: #008080;
+            box-shadow: 0 0 0 0.2rem rgba(0, 128, 128, 0.25);
+            color: #ffffff;
+        }
         .form-select option {
-            background-color: #2c2c2c;
+            background-color: #001f2d;
+        }
+        .btn-success {
+            background-color: #008080;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #006666;
+        }
+        .btn-outline-secondary {
+            color: #008080;
+            border-color: #008080;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #008080;
+            color: #ffffff;
+        }
+        .home-btn {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .home-btn:hover {
+            color: #008080;
         }
     </style>
 </head>
-<body class="bg-dark">
+<body>
+    <nav class="navbar navbar-expand-lg mb-4">
+        <div class="container">
+            <a href="/" class="home-btn">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a class="navbar-brand ms-4" href="/contacts">Address Book</a>
+        </div>
+    </nav>
+
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white py-3">
+                <div class="card shadow">
+                    <div class="card-header py-3">
                         <h4 class="card-title mb-0">
                             <i class="fas fa-user-plus me-2"></i>Add New Contact
                         </h4>
@@ -47,7 +109,7 @@
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Full Name</label>
-                                <input type="text" name="name" id="name" class="form-control <?= (isset($validation) && $validation->hasError('name')) ? 'is-invalid' : '' ?>" value="<?= old('name') ?>" required minlength="3" maxlength="100" placeholder="John Doe">
+                                <input type="text" name="name" id="name" class="form-control <?= (isset($validation) && $validation->hasError('name')) ? 'is-invalid' : '' ?>" value="<?= old('name') ?>" required minlength="3" maxlength="100" placeholder="Add your name">
                                 <?php if (isset($validation) && $validation->hasError('name')): ?>
                                     <div class="invalid-feedback"><?= $validation->getError('name') ?></div>
                                 <?php endif; ?>
@@ -56,7 +118,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" name="email" id="email" class="form-control <?= (isset($validation) && $validation->hasError('email')) ? 'is-invalid' : '' ?>" value="<?= old('email') ?>" required maxlength="100" placeholder="john@example.com">
+                                    <input type="email" name="email" id="email" class="form-control <?= (isset($validation) && $validation->hasError('email')) ? 'is-invalid' : '' ?>" value="<?= old('email') ?>" required maxlength="100" placeholder="abc@gmail.com">
                                     <?php if (isset($validation) && $validation->hasError('email')): ?>
                                         <div class="invalid-feedback"><?= $validation->getError('email') ?></div>
                                     <?php endif; ?>
@@ -64,7 +126,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" name="phone" id="phone" class="form-control <?= (isset($validation) && $validation->hasError('phone')) ? 'is-invalid' : '' ?>" value="<?= old('phone') ?>" required minlength="10" maxlength="20" placeholder="+1 (234) 567-8900">
+                                    <input type="tel" name="phone" id="phone" class="form-control <?= (isset($validation) && $validation->hasError('phone')) ? 'is-invalid' : '' ?>" value="<?= old('phone') ?>" required minlength="10" maxlength="20" placeholder="+974 76299302">
                                     <?php if (isset($validation) && $validation->hasError('phone')): ?>
                                         <div class="invalid-feedback"><?= $validation->getError('phone') ?></div>
                                     <?php endif; ?>
@@ -73,7 +135,7 @@
 
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
-                                <textarea name="address" id="address" class="form-control <?= (isset($validation) && $validation->hasError('address')) ? 'is-invalid' : '' ?>" rows="3" required minlength="10" placeholder="123 Main St, City, Country"><?= old('address') ?></textarea>
+                                <textarea name="address" id="address" class="form-control <?= (isset($validation) && $validation->hasError('address')) ? 'is-invalid' : '' ?>" rows="3" required minlength="10" placeholder="88 Al Sadd Street"><?= old('address') ?></textarea>
                                 <?php if (isset($validation) && $validation->hasError('address')): ?>
                                     <div class="invalid-feedback"><?= $validation->getError('address') ?></div>
                                 <?php endif; ?>
@@ -104,9 +166,9 @@
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-                                    <label for="tag" class="form-label">Tag</label>
+                                    <label for="tag" class="form-label">Category</label>
                                     <select name="tag" id="tag" class="form-select <?= (isset($validation) && $validation->hasError('tag')) ? 'is-invalid' : '' ?>" required>
-                                        <option value="" disabled <?= !old('tag') ? 'selected' : '' ?>>Select a tag</option>
+                                        <option value="" disabled <?= !old('tag') ? 'selected' : '' ?>>Select a category</option>
                                         <option value="Family" <?= old('tag') == 'Family' ? 'selected' : '' ?>>Family</option>
                                         <option value="Work" <?= old('tag') == 'Work' ? 'selected' : '' ?>>Work</option>
                                         <option value="Friends" <?= old('tag') == 'Friends' ? 'selected' : '' ?>>Friends</option>
